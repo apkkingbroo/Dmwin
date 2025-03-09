@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APKMODDERKING</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{display:flex;flex-direction:column;justify-content:flex-start;align-items:center;height:100vh;background:#121212;
+            font-family:Arial,sans-serif;position:relative;overflow:hidden;padding-top:60px;}
+
+        .notice{position:absolute;top:2%;left:50%;transform:translateX(-50%);color:#00ff00;font-weight:bold;
+            background:rgba(0,0,0,0.8);padding:8px 15px;border-radius:6px;font-size:14px;box-shadow:0 0 10px rgba(255,255,255,0.5);
+            text-align:center;line-height:18px;max-width:90%;}
+
+        .tg, .pb{position:absolute;cursor:grab;z-index:1000;}
+
+        .tg{display:flex;align-items:center;gap:8px;padding:6px 12px;background:#0088cc;border-radius:20px;color:white;
+            font-weight:bold;box-shadow:0 0 10px rgba(255,255,255,0.5);top:10%;left:50%;transform:translateX(-50%);
+            transition:.3s;font-size:14px;}
+        .tg img{width:20px;height:20px;filter:invert(1);} 
+        .tg:hover{background:#0077b5;box-shadow:0 0 15px rgba(255,255,255,0.8);}
+
+        .pb{background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);padding:6px 12px;color:white;font-size:11px;
+            font-weight:bold;border-radius:6px;box-shadow:0 4px 10px rgba(255,255,255,0.3);top:18%;left:50%;transform:translateX(-50%);
+            min-width:140px;text-align:center;display:flex;flex-direction:column;gap:2px;}
+        .title{color:#00aaff;font-size:13px;font-weight:bold;}
+        .row{display:flex;justify-content:space-between;width:100%;font-size:10px;}
+
+        .ph{position:relative;width:100%;height:calc(100vh - 150px);}
+        .if{position:absolute;width:100%;height:100%;}
+        iframe{width:100%;height:100%;border:none;}
+    </style>
+</head>
+<body>
+    <div class="notice">
+        Isi hack se new account bana kar paise deposit karne ke baad hi hack connect hogi.<br>
+        Sirf naye account par kaam karega.
+    </div>
+
+    <div class="tg" id="tg">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+        Join Telegram
+    </div>
+    
+    <div class="pb" id="pb">
+        <span class="title">APKMODDERKING</span>
+        <div class="row"><span>PN:</span> <span id="pn"></span></div>
+        <div class="row"><span>Res:</span> <span id="rt"></span></div>
+        <div class="row"><span>Time:</span> <span id="tt"></span></div>
+    </div>
+    
+    <div class="ph">
+        <div class="if"><iframe src="https://www.dmwin2.com/#/register?invitationCode=288111959181"></iframe></div>
+    </div>
+    
+    <script>
+        let e=(id)=>document.getElementById(id),pn=e("pn"),rt=e("rt"),tt=e("tt"),tg=e("tg"),pb=e("pb");
+        function upd(){
+            let n=new Date(),y=n.getUTCFullYear(),m=String(n.getUTCMonth()+1).padStart(2,'0'),d=String(n.getUTCDate()).padStart(2,'0'),
+            h=n.getUTCHours(),mi=n.getUTCMinutes(),tm=h*60+mi,p=`${y}${m}${d}1000${10001+tm}`;
+            pn.innerText=p;
+            let l=p.slice(-2),s=[...l].reduce((a,b)=>a+parseInt(b),0);
+            if(s>9)s=[...String(s)].reduce((a,b)=>a+parseInt(b),0);
+            let r=s>=5?"BIG":"SMALL";
+            rt.innerHTML=`<span style="color:${s>=5?'green':'red'}">${r}</span>`;
+            let sec=n.getUTCSeconds(),rem=(59-sec);
+            tt.innerText=`00:${String(rem).padStart(2,'0')}`;
+        }
+        setInterval(upd,1000); upd();
+        tg.onclick=()=>{window.open("https://telegram.me/apkmodderking","_blank");};
+
+        function makeMovable(el) {
+            let drag = false, offsetX, offsetY;
+            el.addEventListener("mousedown", (e) => {
+                drag = true;
+                offsetX = e.clientX - el.getBoundingClientRect().left;
+                offsetY = e.clientY - el.getBoundingClientRect().top;
+            });
+            document.addEventListener("mousemove", (e) => {
+                if (drag) {
+                    el.style.left = `${e.clientX - offsetX}px`;
+                    el.style.top = `${e.clientY - offsetY}px`;
+                }
+            });
+            document.addEventListener("mouseup", () => { drag = false; });
+
+            el.addEventListener("touchstart", (e) => {
+                drag = true;
+                let touch = e.touches[0];
+                offsetX = touch.clientX - el.getBoundingClientRect().left;
+                offsetY = touch.clientY - el.getBoundingClientRect().top;
+            });
+            document.addEventListener("touchmove", (e) => {
+                if (drag) {
+                    let touch = e.touches[0];
+                    el.style.left = `${touch.clientX - offsetX}px`;
+                    el.style.top = `${touch.clientY - offsetY}px`;
+                }
+            });
+            document.addEventListener("touchend", () => { drag = false; });
+        }
+        makeMovable(tg);
+        makeMovable(pb);
+    </script>
+</body>
+</html>
